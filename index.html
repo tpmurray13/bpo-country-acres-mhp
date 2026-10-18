@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Country Acres MHP &mdash; Broker Price Opinion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root, [data-theme="light"] {
+      --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+      --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+      --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      --text-lg: clamp(1.125rem, 1rem + 0.75vw, 1.5rem);
+      --text-xl: clamp(1.5rem, 1.2rem + 1.25vw, 2.25rem);
+      --text-2xl: clamp(2rem, 1.2rem + 2.5vw, 3.5rem);
+      --space-1: .25rem; --space-2: .5rem; --space-3: .75rem; --space-4: 1rem; --space-5: 1.25rem; --space-6: 1.5rem; --space-8: 2rem; --space-10: 2.5rem; --space-12: 3rem; --space-16: 4rem;
+      --color-bg:#ffffff; --color-surface:#ffffff; --color-surface-2:#eaf2ed; --color-border:#e1ded6; --color-text:#333333; --color-text-muted:#6b6f6c;
+      --color-primary:#17613c; --color-primary-2:#d9ebe1; --color-band:#a3701f; --color-band-soft:#f2e6d3;
+      --color-alert:#a3341f; --color-alert-soft:#f2dcd3;
+      --radius-md:.5rem; --radius-lg:.9rem; --radius-xl:1.2rem;
+      --shadow-sm:0 1px 2px rgba(0,0,0,.06); --shadow-md:0 8px 24px rgba(0,0,0,.08);
+      --font-display:'Outfit', system-ui, sans-serif; --font-body:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0} html{scroll-behavior:smooth} body{font-family:var(--font-body);font-size:var(--text-base);color:var(--color-text);background:var(--color-bg);line-height:1.6}
+    a{color:var(--color-primary)} .container{max-width:1100px;margin:0 auto;padding:0 var(--space-4)}
+    .topbar{position:sticky;top:0;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:2px solid var(--color-primary);z-index:20}
+    .topbar-inner{display:flex;justify-content:space-between;align-items:center;padding:var(--space-3) 0;flex-wrap:wrap;gap:var(--space-2)}
+    .logo{display:flex;gap:var(--space-3);align-items:center;font-weight:600}
+    .logo img{height:42px;width:auto;display:block}
+    .hero{padding:var(--space-16) 0 var(--space-12)}
+    .eyebrow{font-size:var(--text-sm);letter-spacing:.12em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-3)}
+    h1,h2,h3,h4{font-family:var(--font-display);line-height:1.12;font-weight:700;color:var(--color-primary)}
+    h1{font-size:var(--text-2xl);max-width:36ch;margin-bottom:var(--space-4)} h2{font-size:var(--text-xl);margin-bottom:var(--space-5)} h3{font-size:var(--text-lg);margin-bottom:var(--space-3)} h4{font-size:var(--text-base);margin-bottom:var(--space-2)}
+    .lede{max-width:76ch;color:var(--color-text-muted)}
+    .grid{display:grid;grid-template-columns:1.3fr .9fr;gap:var(--space-8);align-items:start}
+    .card{background:var(--color-surface);border:1px solid rgba(31,35,32,.12);border-radius:var(--radius-xl);padding:var(--space-6);box-shadow:var(--shadow-sm)}
+    .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4);margin-top:var(--space-8)}
+    .stat{background:var(--color-surface-2);border-radius:var(--radius-lg);padding:var(--space-4)} .stat-label{font-size:var(--text-xs);text-transform:uppercase;letter-spacing:.08em;color:var(--color-text-muted)} .stat-value{font-size:var(--text-lg);font-weight:700;margin-top:.2rem;color:var(--color-primary)}
+    .stat-alert .stat-value{color:var(--color-alert)}
+    section{padding:var(--space-10) 0}
+    section.alt{background:var(--color-surface-2)}
+    .table{width:100%;border-collapse:collapse;font-size:var(--text-sm)} .table th,.table td{padding:.85rem .6rem;border-bottom:1px solid rgba(31,35,32,.1);text-align:left;vertical-align:top} .table th{color:var(--color-text-muted);font-weight:600;white-space:nowrap}
+    .table-wrap{overflow-x:auto}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-8)}
+    .prop-card + .prop-card{margin-top:var(--space-6)}
+    .spec-list{display:flex;flex-direction:column;gap:var(--space-4);margin-top:var(--space-4)}
+    .spec-row{padding-bottom:var(--space-3);border-bottom:1px solid rgba(31,35,32,.1)}
+    .spec-row:last-child{border-bottom:none;padding-bottom:0}
+    .spec-label{font-size:var(--text-xs);color:var(--color-text-muted);font-weight:600;text-transform:uppercase;letter-spacing:.03em;margin-bottom:.25rem}
+    .spec-value{font-size:var(--text-sm);line-height:1.55}
+    .three-col{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--space-4)}
+    .pill{display:inline-block;background:var(--color-primary-2);color:var(--color-primary);padding:.35rem .7rem;border-radius:999px;font-size:var(--text-xs);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .pill-band{display:inline-block;background:var(--color-band-soft);color:var(--color-band);padding:.35rem .7rem;border-radius:999px;font-size:var(--text-xs);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .pill-alert{display:inline-block;background:var(--color-alert-soft);color:var(--color-alert);padding:.35rem .7rem;border-radius:999px;font-size:var(--text-xs);font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+    .pill-outline{display:inline-block;border:1px solid rgba(31,35,32,.18);color:var(--color-text-muted);padding:.3rem .65rem;border-radius:999px;font-size:var(--text-xs);font-weight:600;margin:.15rem .25rem .15rem 0}
+    .note{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-4)}
+    footer{padding:var(--space-10) 0;background:var(--color-primary);color:#ffffff;font-size:var(--text-sm)}
+    .footer-inner{display:flex;align-items:center;gap:var(--space-6);flex-wrap:wrap}
+    .footer-logo{height:36px;width:auto;filter:brightness(0) invert(1)}
+    .disclaimer{background:var(--color-surface-2);border-radius:var(--radius-lg);padding:var(--space-5);font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-6)}
+    .prop-divider{display:flex;align-items:center;gap:var(--space-4);margin:var(--space-4) 0 var(--space-6)}
+    .prop-divider .badge{background:var(--color-primary);color:#fff;font-family:var(--font-display);font-weight:700;font-size:var(--text-xs);letter-spacing:.06em;text-transform:uppercase;padding:.4rem .85rem;border-radius:999px;white-space:nowrap}
+    .prop-divider .badge.two{background:var(--color-band)}
+    .prop-divider hr{flex:1;border:none;border-top:1px solid rgba(31,35,32,.15)}
+    .terms-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-6)}
+    .bio-grid{display:grid;grid-template-columns:.9fr 1.4fr;gap:var(--space-8);align-items:start}
+    .reuse-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5);margin-top:var(--space-5)}
+    .reuse-card{background:var(--color-surface);border:1px solid rgba(31,35,32,.12);border-radius:var(--radius-lg);padding:var(--space-5)}
+    .reuse-card h4{margin-bottom:var(--space-2)}
+    .reuse-card ul{margin:0 0 0 1.1rem;padding:0;font-size:var(--text-sm)}
+    .reuse-card li{margin-bottom:.35rem}
+    @media (max-width: 820px){.grid,.two-col,.terms-grid,.three-col,.bio-grid,.reuse-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}}
+    .btn-print{display:inline-flex;align-items:center;gap:.5rem;background:var(--color-primary);color:#ffffff;border:none;padding:.55rem 1.1rem;border-radius:999px;font-family:var(--font-body);font-weight:600;font-size:var(--text-xs);letter-spacing:.02em;cursor:pointer;box-shadow:var(--shadow-sm);transition:background .15s ease}
+    .btn-print:hover{background:#0f4a2d}
+    .btn-print svg{width:15px;height:15px;fill:currentColor;flex:none}
+    .topbar-actions{display:flex;align-items:center;gap:.75rem;flex-wrap:wrap}
+    @media screen and (max-width: 820px){.adj-table{min-width:760px}.comps-table{min-width:680px}.adj-table td:nth-child(4){min-width:380px}}
+    @media print {
+      .no-print{display:none !important}
+      *{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact}
+      html,body{font-size:10.5pt;line-height:1.45}
+      .topbar{position:static;backdrop-filter:none;box-shadow:none;border-bottom:2px solid var(--color-primary)}
+      .hero{padding:14pt 0 10pt}
+      section{padding:12pt 0}
+      .grid,.two-col,.terms-grid,.three-col,.bio-grid,.reuse-grid{grid-template-columns:1fr;gap:10pt}
+      .stats{grid-template-columns:repeat(3,minmax(0,1fr));gap:8pt}
+      .spec-list{gap:6pt;margin-top:6pt}
+      .spec-row{padding-bottom:5pt}
+      .spec-label{font-size:7.5pt}
+      .spec-value{font-size:9pt;line-height:1.4}
+      h1{font-size:19pt;margin-bottom:8pt}
+      h2{font-size:14.5pt;margin-bottom:8pt}
+      h3{font-size:12pt;margin-bottom:6pt}
+      h4{font-size:10.5pt;margin-bottom:4pt}
+      .card{box-shadow:none;border:1px solid #d7d3c8;padding:10pt}
+      .stat{page-break-inside:avoid}
+      .reuse-card{page-break-inside:avoid;border:1px solid #d7d3c8}
+      table{font-size:9pt}
+      tr{page-break-inside:avoid}
+      .comps-table{table-layout:fixed;width:100%}
+      .comps-table th,.comps-table td{white-space:normal;word-wrap:break-word;overflow-wrap:break-word;font-size:6.4pt;line-height:1.32;padding:.28rem .18rem}
+      .adj-table{table-layout:fixed;width:100%}
+      .adj-table th,.adj-table td{white-space:normal;word-wrap:break-word;overflow-wrap:break-word;font-size:7pt;line-height:1.32;padding:.28rem .18rem}
+      .adj-table th:nth-child(1),.adj-table td:nth-child(1){width:15%}
+      .adj-table th:nth-child(2),.adj-table td:nth-child(2){width:9%}
+      .adj-table th:nth-child(3),.adj-table td:nth-child(3){width:8%}
+      .adj-table th:nth-child(4),.adj-table td:nth-child(4){width:58%}
+      .adj-table th:nth-child(5),.adj-table td:nth-child(5){width:10%}
+      .parcel-table{table-layout:fixed;width:100%}
+      .parcel-table th,.parcel-table td{white-space:normal;word-wrap:break-word;overflow-wrap:break-word;font-size:7.4pt;line-height:1.32;padding:.3rem .2rem}
+      .table-wrap{overflow-x:visible}
+      h2,h3,h4{page-break-after:avoid}
+      .prop-divider{page-break-after:avoid}
+      footer{background:var(--color-primary) !important;color:#ffffff !important;padding:10pt 0}
+      a{color:var(--color-primary) !important;text-decoration:none}
+      footer a{color:#ffffff !important;text-decoration:underline}
+
+      .mhp-comps th:nth-child(1),.mhp-comps td:nth-child(1){width:27%}
+      .mhp-comps th:nth-child(2),.mhp-comps td:nth-child(2){width:9%}
+      .mhp-comps th:nth-child(3),.mhp-comps td:nth-child(3){width:12%}
+      .mhp-comps th:nth-child(4),.mhp-comps td:nth-child(4){width:7%}
+      .mhp-comps th:nth-child(5),.mhp-comps td:nth-child(5){width:8%}
+      .mhp-comps th:nth-child(6),.mhp-comps td:nth-child(6){width:10%}
+      .mhp-comps th:nth-child(7),.mhp-comps td:nth-child(7){width:27%}
+      .land-comps th:nth-child(1),.land-comps td:nth-child(1){width:28%}
+      .land-comps th:nth-child(2),.land-comps td:nth-child(2){width:10%}
+      .land-comps th:nth-child(3),.land-comps td:nth-child(3){width:12%}
+      .land-comps th:nth-child(4),.land-comps td:nth-child(4){width:9%}
+      .land-comps th:nth-child(5),.land-comps td:nth-child(5){width:10%}
+      .land-comps th:nth-child(6),.land-comps td:nth-child(6){width:31%}
+      @page{margin:0.55in}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container topbar-inner">
+      <div class="logo"><img src="assets/gm-logo.svg" alt="Grant-Murray Real Estate" /></div>
+      <div class="topbar-actions">
+        <div class="pill">Broker Price Opinion</div>
+        <button class="btn-print no-print" type="button" onclick="window.print()">
+          <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7h2a2 2 0 0 1 2 2v7h-4v4H6v-4H2v-7a2 2 0 0 1 2-2h2zm2-5v5h8V4H8zm8 14H8v3h8v-3zm2-2h2v-5H4v5h2v-2h12v2z"/></svg>
+          Print / Save as PDF
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="eyebrow">Broker Price Opinion &middot; Manufactured Housing Community + Surplus Acreage &middot; 4473 Ray Rd, Spring Lake, NC 28390</div>
+        <h1>Country Acres Mobile Home Park &mdash; Three-Parcel Assemblage &mdash; Broker Price Opinion</h1>
+        <p class="lede">Three contiguous parcels totaling <strong>58.81 acres</strong> (legal description) in the Anderson Creek Township of unincorporated Harnett County, owned of record by the Mitzi D. Allison Revocable Trust. The main 41.67-acre parcel at 4473 Ray Rd is the <strong>Country Acres MHP</strong>, carrying <strong>20 county-billed residential units</strong> and 26 addressed mobile-home sites. The two companion parcels on Brandi Ln (12.00 ac and 5.14 ac) are largely wooded. All three are zoned <strong>RA-20M</strong>. As requested, this report delivers <strong>one combined value</strong> for all three parcels sold together.</p>
+        <div class="stats">
+          <div class="stat"><div class="stat-label">Total land (3 parcels)</div><div class="stat-value">58.81 ac</div></div>
+          <div class="stat"><div class="stat-label">County-billed units</div><div class="stat-value">20 units</div></div>
+          <div class="stat"><div class="stat-label">Zoning</div><div class="stat-value">RA-20M</div></div>
+          <div class="stat"><div class="stat-label">Indicated value range</div><div class="stat-value">$910K&ndash;$1.10M</div></div>
+          <div class="stat stat-alert"><div class="stat-label">Opinion of value (combined)</div><div class="stat-value">$1,000,000</div></div>
+          <div class="stat"><div class="stat-label">Recommended list price</div><div class="stat-value">$1,050,000</div></div>
+        </div>
+        <p class="note">The value combines the operating park (20 units &times; $35,000 = $700,000) and roughly 46 acres of surplus land beyond the park footprint ($306,680), rounded to $1,000,000. This is a broker's opinion of value for marketing purposes, not a certified USPAP appraisal. No rent roll, operating statement or occupancy report was provided, so the income figures below are market-based assumptions.</p>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="container">
+        <h2>Subject property summary</h2>
+        <div class="card">
+          <div class="spec-list">
+            <div class="spec-row"><div class="spec-label">Location</div><div class="spec-value">4473 Ray Rd and Brandi Ln, Spring Lake, NC 28390 (Spring Lake mailing address; unincorporated Harnett County, Anderson Creek Township). The site sits in the Anderson Creek growth area northwest of Spring Lake, which serves Fort Bragg housing demand. It borders Ford Springs Baptist Church and has frontage on Ray Rd.</div></div>
+            <div class="spec-row"><div class="spec-label">Owner of record</div><div class="spec-value">Mitzi D. Allison, Trustee, and the Mitzi D. Allison Revocable Trust, 7809 Blue Heron Dr W, Apt 2, Wilmington, NC 28411. All three parcels share one deed (Book 4160, Page 2505, recorded 7/2022). The deed shows no sale price and appears to be a transfer into the trust, not an arm's-length sale.</div></div>
+            <div class="spec-row"><div class="spec-label">Park operation</div><div class="spec-value">County records name the main parcel "Country Acres MHP" (development type MHP; card note "Mobile Home Park"). The 2026 tax bill includes a $1,700 solid-waste fee, which equals <strong>20 billed units</strong> at $85 each. County address points show <strong>26 mobile-home addresses</strong> on Country Acres Dr and Sonny Dee Dr, plus one single-family address, two outbuildings and the 4473 Ray Rd office/main address. The gap between 26 addressed sites and 20 billed units suggests up to six vacant or inactive pads. That gap is unverified.</div></div>
+            <div class="spec-row"><div class="spec-label">Site improvements</div><div class="spec-value">The county carries $163,660 of site improvements (roads, pads, utility hookups and similar) on the main parcel, about $8,183 per billed unit. Mobile homes are not valued as real property on the parcel, so this report assumes the homes are tenant-owned or separately listed personal property. They are excluded from this value.</div></div>
+            <div class="spec-row"><div class="spec-label">Physical / environmental</div><div class="spec-value">Mostly Blaney and Gilead loamy sands, which are well drained and typical of the Sandhills. About 7.3 ac of Roanoke loam (occasionally flooded) and about 1.9 ac of open water (a pond) sit on the main parcel. The county flags wetlands on the main parcel and rates flood risk as minimal elsewhere. The 12-ac Brandi Ln parcel is forested with no wetland flag. The 5.14-ac parcel at 621 Brandi Ln is partly cleared and has one mobile home.</div></div>
+            <div class="spec-row"><div class="spec-label">Service providers</div><div class="spec-value">Electric: South River EMC. Telephone: CenturyLink. Fire: Anderson Creek Fire District. Schools: Overhills district. 2026 tax rates: county $0.63 and fire $0.11 per $100.</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Parcel inventory</h2>
+        <div class="card table-wrap">
+          <table class="table parcel-table">
+            <tr><th>Parcel</th><th>PIN / PID</th><th>Acres (legal)</th><th>Use</th><th>2026 county value</th></tr>
+            <tr><td><strong>4473 Ray Rd</strong></td><td>0505-63-2230.000 / 010505 0009</td><td>41.67</td><td>Country Acres MHP; 20 billed units; pond and wet soils</td><td>$1,070,570 (land $906,910 + improvements $163,660)</td></tr>
+            <tr><td><strong>Brandi Ln (no number)</strong></td><td>0505-53-0262.000 / 010513 0205</td><td>12.00</td><td>Wooded / forest; Brandi Ln along south line</td><td>$103,350 (land only)</td></tr>
+            <tr><td><strong>621 Brandi Ln</strong></td><td>0505-42-9593.000 / 010505 0010</td><td>5.14</td><td>Partly cleared; one mobile home on lot</td><td>$69,770 (land $68,540 + improvements $1,230)</td></tr>
+            <tr><td><strong>Total</strong></td><td>3 parcels, one deed</td><td><strong>58.81</strong></td><td>GIS-calculated area is 64.67 ac; legal acreage used here</td><td><strong>$1,243,690</strong> (2025: $800,830)</td></tr>
+          </table>
+        </div>
+        <p class="note">Source: Harnett County tax parcel records and 2026 tax notices. Parcel, utility and address data come from the county's public GIS services (<a href="https://gis.harnett.org/arcgis/rest/services/Tax/Parcels/MapServer/0" target="_blank" rel="noopener">Harnett County GIS &mdash; Tax Parcels</a>). Pulled 10/18/2026.</p>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="container two-col">
+        <div class="card">
+          <h3>Utilities &amp; access</h3>
+          <ul style="margin:0 0 0 1.2rem;padding:0;font-size:var(--text-sm)">
+            <li style="margin-bottom:.5rem"><strong>Water:</strong> Harnett County water mains run along Ray Rd, with county hydrants at 4470 Ray Rd (across from the park entrance) and 4600 Ray Rd. Whether every pad is on county water, or some are on wells, has not been confirmed.</li>
+            <li style="margin-bottom:.5rem"><strong>Sewer:</strong> County GIS shows no county sewer line inside the subject parcels, so this report assumes septic. County gravity sewer and Pump Station 72 serve the neighboring Anderson Creek Club / Anderson Creek Crossing subdivisions. That is a long-term redevelopment consideration, not an in-place benefit.</li>
+            <li><strong>Access:</strong> Park entrance from Ray Rd via the internal roads Country Acres Dr and Sonny Dee Dr. The Brandi Ln parcels are reached from Brandi Ln. The main parcel record notes an ingress/egress easement.</li>
+          </ul>
+          <p class="note">Source: <a href="https://gis.harnett.org/arcgis/rest/services/Public_Utilities/PU_General/MapServer" target="_blank" rel="noopener">Harnett County Public Utilities GIS</a>.</p>
+        </div>
+        <div class="card">
+          <h3>Zoning</h3>
+          <p style="font-size:var(--text-sm)">All three parcels are zoned <strong>RA-20M</strong>, Harnett County's residential/agricultural district that permits manufactured homes. The park is an established, county-recognized MHP. Adding pads, filling the roughly six inactive addressed sites, or expanding onto the Brandi Ln acreage would likely need county manufactured-home-park approval and Environmental Health septic permits. A buyer should confirm both with Harnett County Development Services before counting on any expansion. The parcels also fall in a voluntary agricultural district.</p>
+          <p class="note">Source: <a href="https://gis.harnett.org/arcgis/rest/services/Planning/Zoning/MapServer" target="_blank" rel="noopener">Harnett County Planning &mdash; Zoning GIS</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Methodology and verification basis</h2>
+        <div class="card">
+          <p style="margin-top:0">The comps for a small park on 58.81 acres are mostly parks on far less land, so applying a per-unit price to the whole assemblage would leave the surplus acreage unpriced. This BPO therefore values the assemblage in two pieces and reconciles them to <strong>one combined value</strong>:</p>
+          <ol style="margin:0 0 0 1.2rem;padding:0">
+            <li style="margin-bottom:.5rem"><strong>Operating park:</strong> sales comparison in <strong>$ per county-billed unit</strong>, using 10 closed mobile home park sales in Harnett County (2024&ndash;2026), cross-checked with a market-rent income approach.</li>
+            <li style="margin-bottom:.5rem"><strong>Surplus land:</strong> sales comparison in <strong>$ per acre</strong>, using 9 closed vacant RA-20 acreage sales within about 6 miles of the subject. This covers the main-parcel acreage outside an assumed 13-acre park footprint, plus both Brandi Ln parcels.</li>
+          </ol>
+          <ul style="margin:.75rem 0 0 1.2rem;padding:0">
+            <li style="margin-bottom:.5rem"><strong>All comps were independently researched</strong> from Harnett County's recorded deed and sale data. The client supplied only parcel-app screenshots and tax notices, which describe the subject alone.</li>
+            <li style="margin-bottom:.5rem">Multi-parcel sales were grouped by deed book and page, so each comp's price, acreage and unit count reflect the whole transaction.</li>
+            <li style="margin-bottom:.5rem">Unit counts for every comp and for the subject use the same yardstick: the county solid-waste fee count, which tracks billed occupied dwellings. It does not count every possible pad.</li>
+            <li>All adjustments are Grant-Murray Real Estate's professional judgment as prospective listing broker. This is a broker's opinion of value, not a certified USPAP appraisal.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="container">
+        <h2>Comparable sales &mdash; mobile home parks</h2>
+        <p class="lede" style="margin-bottom:var(--space-6)">Ten closed Harnett County park sales from March 2024 to April 2026. Wake-adjacent sales in Fuquay-Varina and Willow Spring (about $64K&ndash;$72K per unit) were left out as a different submarket, along with single-home and non-qualified transfers.</p>
+        <div class="card table-wrap">
+          <table class="table comps-table mhp-comps">
+            <tr><th>Comp</th><th>Sold</th><th>Price</th><th>Units</th><th>Acres</th><th>$/unit</th><th>Notes</th></tr>
+            <tr><td><strong>1. Storey Acres MHP</strong>, 923 Bethel Baptist Rd, Spring Lake</td><td>12/2025</td><td>$1,155,000</td><td>42</td><td>21.06</td><td>$27,500</td><td>Same township, 3.9 mi; RA-20M; 3-parcel sale</td></tr>
+            <tr><td><strong>2. Bunnlevel MH Community</strong>, 67 Ervin McNeill St, Bunnlevel</td><td>5/2025</td><td>$900,000</td><td>27</td><td>30.30</td><td>$33,333</td><td>9.6 mi; RA-20M; large acreage like the subject</td></tr>
+            <tr><td><strong>3. Sand Rock MHP</strong>, 2065 Hillmon Grove Rd, Cameron</td><td>3/2024</td><td>$2,150,000</td><td>46</td><td>26.92</td><td>$46,739</td><td>8.2 mi; county notes 42 homes; top of local set</td></tr>
+            <tr><td><strong>4. Hamilton MHP</strong>, 1074 NC 82, Dunn</td><td>3/2025</td><td>$850,000</td><td>19</td><td>5.25</td><td>$44,737</td><td>17.6 mi; same unit count; compact layout</td></tr>
+            <tr><td><strong>5. Rock Crossing MHP</strong>, 1126 Jonesboro Rd, Dunn</td><td>10/2024</td><td>$750,000</td><td>19</td><td>3.47</td><td>$39,474</td><td>23.5 mi; same unit count; dense in-town site</td></tr>
+            <tr><td><strong>6. Ideal MHP</strong>, 1154 Brinkley Rd, Dunn</td><td>3/2024</td><td>$550,000</td><td>22</td><td>4.23</td><td>$25,000</td><td>22.5 mi; similar size; low end of set</td></tr>
+            <tr><td><strong>7. Pines MHP</strong>, 16734 NC 27 W, Sanford (Harnett Co.)</td><td>1/2025</td><td>$1,282,000</td><td>22</td><td>19.98</td><td>$58,273</td><td>6.6 mi; includes $96,786 of real-property dwelling value</td></tr>
+            <tr><td><strong>8. Sunset Pines MHP</strong>, 223 McDuffie Rd, Cameron</td><td>10/2024</td><td>$215,000</td><td>7</td><td>4.10</td><td>$30,714</td><td>7.4 mi; small rural park</td></tr>
+            <tr><td><strong>9. Pine Hollow MHP</strong>, 12502 US 421 N, Broadway</td><td>4/2026</td><td>$750,000</td><td>15</td><td>7.35</td><td>$50,000</td><td>12.0 mi; most recent sale</td></tr>
+            <tr><td><strong>10. Taylor Village MHP</strong>, 3784 Harnett Central Rd, Angier</td><td>7/2025</td><td>$1,920,000</td><td>52</td><td>24.45</td><td>$36,923</td><td>17.6 mi; northern Harnett growth corridor</td></tr>
+          </table>
+        </div>
+        <p class="note">Units are the county solid-waste billing counts on the sold parcels. Distances are straight-line from the subject. Source: Harnett County recorded sale data via <a href="https://gis.harnett.org/arcgis/rest/services/Tax/Parcels/MapServer/0" target="_blank" rel="noopener">Harnett County GIS &mdash; Tax Parcels</a>. Pulled 10/18/2026.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Adjustment matrix &mdash; mobile home parks</h2>
+        <p class="lede" style="margin-bottom:var(--space-6)">Each comp is adjusted to the subject: a 20-unit rural park near Fort Bragg with county water on Ray Rd, presumed septic, about $8,183 per unit in county-recorded site improvements, and homes assumed to be tenant-owned. The comps' own excess land is handled here; the subject's surplus acreage is valued separately below.</p>
+        <div class="card table-wrap">
+          <table class="table adj-table">
+            <tr><th>Comp property</th><th>Unadj. $/unit</th><th>Net Adj. %</th><th>What was adjusted</th><th>Adj. $/unit</th></tr>
+            <tr><td><strong>1. Storey Acres MHP</strong></td><td>$27,500</td><td>+12%</td><td>Location: same Anderson Creek Township and zoning, 3.9 mi away (0%). Time: closed about 10 months ago (+2%). Size: at 42 units it is twice the subject, and larger parks trade at a per-unit bulk discount (+5%). Site improvements: about $5,763 per unit in county-recorded improvements versus the subject's $8,183 (+5%).</td><td><strong>$30,800</strong></td></tr>
+            <tr><td><strong>2. Bunnlevel MH Community</strong></td><td>$33,333</td><td>+3%</td><td>Location: Bunnlevel is more rural and farther from Fort Bragg housing demand (+5%). Time: about 17 months ago (+3%). Excess land: 1.12 ac per unit, so the price carries surplus acreage the subject values separately (&minus;5%). Size: similar (0%).</td><td><strong>$34,333</strong></td></tr>
+            <tr><td><strong>3. Sand Rock MHP</strong></td><td>$46,739</td><td>&minus;5%</td><td>Location: Cameron / NC 24 corridor, similar demand (0%). Time: about 31 months ago (+5%). Size: 46 units, bulk discount (+5%). Income quality: its price, the top of the local set, suggests stronger occupancy, rents or park-owned homes, none of which can be verified for the subject (&minus;15%).</td><td><strong>$44,402</strong></td></tr>
+            <tr><td><strong>4. Hamilton MHP</strong></td><td>$44,737</td><td>&minus;2%</td><td>Location: Dunn / I-95 area, weaker link to Fort Bragg demand (+5%). Time: about 19 months ago (+3%). Size: same 19&ndash;20 unit range (0%). Income quality: compact, apparently full park (18 homes in the county park report) versus the subject's unverified occupancy (&minus;10%).</td><td><strong>$43,842</strong></td></tr>
+            <tr><td><strong>5. Rock Crossing MHP</strong></td><td>$39,474</td><td>&minus;1%</td><td>Location: Dunn, 23.5 mi, weaker military demand (+5%). Time: about 24 months ago (+4%). Size: same unit count (0%). Income quality: dense in-town site, likely on public utilities and fully billed (&minus;10%).</td><td><strong>$39,079</strong></td></tr>
+            <tr><td><strong>6. Ideal MHP</strong></td><td>$25,000</td><td>+10%</td><td>Location: rural Dunn, 22.5 mi (+5%). Time: about 31 months ago (+5%). Size and income quality: similar small older park (0%).</td><td><strong>$27,500</strong></td></tr>
+            <tr><td><strong>7. Pines MHP</strong></td><td>$58,273</td><td>&minus;22%</td><td>Location: NC 27 W corridor, 6.6 mi (0%). Time: about 21 months ago (+3%). Excess land: 0.91 ac per unit, some surplus acreage in price (&minus;5%). Improvements: the sale included $96,786 of real-property dwelling value and about $12,800 per unit in total improvements, well above the subject (&minus;20%).</td><td><strong>$45,453</strong></td></tr>
+            <tr><td><strong>8. Sunset Pines MHP</strong></td><td>$30,714</td><td>+9%</td><td>Location: Cameron area, 7.4 mi (0%). Time: about 24 months ago (+4%). Site improvements: about $5,097 per unit versus the subject's $8,183 (+5%). Size: very small park, but per-unit pricing is comparable (0%).</td><td><strong>$33,478</strong></td></tr>
+            <tr><td><strong>9. Pine Hollow MHP</strong></td><td>$50,000</td><td>&minus;7%</td><td>Location: Broadway / Lee County line, less Fort Bragg influence (+3%). Time: 6 months ago (0%). Income quality: price level suggests park-owned homes or stronger rents than the subject can document (&minus;10%).</td><td><strong>$46,500</strong></td></tr>
+            <tr><td><strong>10. Taylor Village MHP</strong></td><td>$36,923</td><td>+3%</td><td>Location: Angier, nearer the Triangle, a stronger submarket (&minus;5%). Time: about 15 months ago (+3%). Size: 52 units, bulk discount (+5%).</td><td><strong>$38,031</strong></td></tr>
+          </table>
+        </div>
+        <p class="note">Adjusted range is $27,500&ndash;$46,500 per unit, with a mean of $38,342 and a median of $38,555. The conclusion of <strong>$35,000 per unit</strong> sits below the middle of the set on purpose. It gives the most weight to Storey Acres (same township, most recent, $30,800 adjusted) and reflects that the subject's rent roll, occupancy, septic condition and home ownership are all unverified.</p>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="container">
+        <h2>Income cross-check &mdash; operating park</h2>
+        <div class="card">
+          <div class="table-wrap">
+            <table class="table parcel-table">
+              <tr><th>Line item</th><th>Assumption</th><th>Annual</th></tr>
+              <tr><td>Potential lot rent</td><td>20 units &times; $425/mo market lot rent</td><td>$102,000</td></tr>
+              <tr><td>Vacancy &amp; collection loss</td><td>7%</td><td>($7,140)</td></tr>
+              <tr><td>Effective gross income</td><td></td><td>$94,860</td></tr>
+              <tr><td>Operating expenses</td><td>32% of EGI (taxes about $9,600, insurance, septic and road repair, mowing, management)</td><td>($30,355)</td></tr>
+              <tr><td><strong>Net operating income</strong></td><td></td><td><strong>$64,505</strong></td></tr>
+              <tr><td>Capitalized at 9.5% / 9.0% / 8.5%</td><td>Small rural tertiary-market park</td><td>$679,000 / $716,700 / $758,900</td></tr>
+            </table>
+          </div>
+          <p class="note">The $425 lot rent is a deliberately conservative assumption for a rural septic park, set below the $525 lot rent advertised at Cimarron MHP in the Anderson Creek area (<a href="https://www.zillow.com/apartments/spring-lake-nc/cimarron-mobile-home-park/9BTp5v/" target="_blank" rel="noopener">Zillow</a>). Cap-rate context comes from current local park listings: a 19-unit Cumberland County park offered at an 8.46% cap (<a href="https://www.loopnet.com/search/mobile-home-parks/cumberland-county-nc/for-sale/" target="_blank" rel="noopener">LoopNet</a>) and a 4-unit Fayetteville park at 9.38% (<a href="https://www.cityfeet.com/cont/listing/1524-seabrook-school-rd-fayetteville-nc-28312/cs39768272" target="_blank" rel="noopener">CityFeet</a>). The income indication of about $679,000&ndash;$759,000 brackets the $700,000 sales-comparison result. Replace these assumptions with the actual rent roll and operating history as soon as the owner provides them.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Comparable sales &mdash; surplus acreage</h2>
+        <p class="lede" style="margin-bottom:var(--space-6)">Surplus land is the main parcel's acreage outside an assumed 13-acre park footprint (about 0.5 ac for each of the 26 addressed sites, including roads), plus both Brandi Ln parcels. That totals 46.81 acres: about <strong>36.61 usable acres</strong> and about <strong>9.2 constrained acres</strong> of pond and flood-prone Roanoke soils.</p>
+        <div class="card table-wrap">
+          <table class="table comps-table land-comps">
+            <tr><th>Comp</th><th>Sold</th><th>Price</th><th>Acres</th><th>$/acre</th><th>Notes</th></tr>
+            <tr><td><strong>L1. Ray Rd</strong>, Spring Lake</td><td>8/2025</td><td>$140,000</td><td>10.00</td><td>$14,000</td><td>0.5 mi; RA-20R; Ray Rd frontage across from Anderson Creek Academy</td></tr>
+            <tr><td><strong>L2. Ray Rd</strong>, Spring Lake</td><td>7/2024</td><td>$150,000</td><td>18.30</td><td>$8,197</td><td>0.6 mi; RA-20R; parent tract of L1</td></tr>
+            <tr><td><strong>L3. Rivenbark Ln</strong>, Spring Lake</td><td>12/2024</td><td>$99,000</td><td>10.10</td><td>$9,802</td><td>2.0 mi; RA-20M, same zoning as subject</td></tr>
+            <tr><td><strong>L4. Hayes Rd</strong>, Spring Lake</td><td>3/2026</td><td>$227,000</td><td>26.51</td><td>$8,563</td><td>4.4 mi; RA-20R; developer buyer</td></tr>
+            <tr><td><strong>L5. 1184 Hayes Rd</strong>, Spring Lake</td><td>5/2025</td><td>$180,000</td><td>14.21</td><td>$12,667</td><td>4.3 mi; RA-20R; road frontage</td></tr>
+            <tr><td><strong>L6. NC 210 S</strong>, Anderson Creek Twp.</td><td>5/2025</td><td>$185,000</td><td>16.13</td><td>$11,469</td><td>5.3 mi; RA-20R; highway frontage</td></tr>
+            <tr><td><strong>L7. Circle T Dr</strong>, Lillington</td><td>4/2026</td><td>$145,000</td><td>12.63</td><td>$11,481</td><td>5.8 mi; RA-20R; Anderson Creek Twp.</td></tr>
+            <tr><td><strong>L8. Bethel Baptist Rd</strong>, Spring Lake</td><td>3/2025</td><td>$62,000</td><td>11.83</td><td>$5,241</td><td>4.9 mi; RA-20R; low end of set</td></tr>
+            <tr><td><strong>L9. McLean Chapel Church Rd</strong>, Bunnlevel</td><td>1/2025</td><td>$337,500</td><td>37.42</td><td>$9,019</td><td>6.3 mi; RA-20R; similar aggregate size</td></tr>
+          </table>
+        </div>
+        <p class="note">Qualified, vacant (no building value) single-deed sales. Source: Harnett County recorded sale data via <a href="https://gis.harnett.org/arcgis/rest/services/Tax/Parcels/MapServer/0" target="_blank" rel="noopener">Harnett County GIS &mdash; Tax Parcels</a>. Pulled 10/18/2026.</p>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="container">
+        <h2>Adjustment matrix &mdash; surplus acreage</h2>
+        <p class="lede" style="margin-bottom:var(--space-6)">Adjusted to the subject's surplus land: about 37 usable acres in three pieces, reached through the park's internal roads and Brandi Ln rather than public-road frontage, next to an operating mobile home park.</p>
+        <div class="card table-wrap">
+          <table class="table adj-table">
+            <tr><th>Comp property</th><th>Unadj. $/acre</th><th>Net Adj. %</th><th>What was adjusted</th><th>Adj. $/acre</th></tr>
+            <tr><td><strong>L1. Ray Rd (10 ac)</strong></td><td>$14,000</td><td>&minus;38%</td><td>Location: same Ray Rd corridor (0%). Size: small tract versus the subject's ~37 usable acres, which sells for less per acre (&minus;15%). Access: direct Ray Rd frontage with county water versus interior access (&minus;20%). Adjacent use: subject land borders an operating park (&minus;5%). Time: about 14 months ago (+2%).</td><td><strong>$8,680</strong></td></tr>
+            <tr><td><strong>L2. Ray Rd (18.3 ac)</strong></td><td>$8,197</td><td>&minus;15%</td><td>Size: moderately smaller (&minus;5%). Access: Ray Rd frontage (&minus;10%). Adjacent use (&minus;5%). Time: about 27 months ago (+5%).</td><td><strong>$6,967</strong></td></tr>
+            <tr><td><strong>L3. Rivenbark Ln</strong></td><td>$9,802</td><td>&minus;18%</td><td>Size: small tract (&minus;12%). Access: lane access, slightly better than the subject's interior land (&minus;5%). Adjacent use (&minus;5%). Zoning: same RA-20M (0%). Time: about 22 months ago (+4%).</td><td><strong>$8,038</strong></td></tr>
+            <tr><td><strong>L4. Hayes Rd (26.51 ac)</strong></td><td>$8,563</td><td>&minus;17%</td><td>Size: similar scale (&minus;3%). Access: public-road frontage (&minus;10%). Adjacent use (&minus;5%). Time: about 7 months ago (+1%).</td><td><strong>$7,107</strong></td></tr>
+            <tr><td><strong>L5. 1184 Hayes Rd</strong></td><td>$12,667</td><td>&minus;27%</td><td>Size: smaller tract (&minus;10%). Access: road frontage (&minus;15%). Adjacent use (&minus;5%). Time: about 17 months ago (+3%).</td><td><strong>$9,247</strong></td></tr>
+            <tr><td><strong>L6. NC 210 S</strong></td><td>$11,469</td><td>&minus;25%</td><td>Size: smaller tract (&minus;8%). Access: highway frontage (&minus;15%). Adjacent use (&minus;5%). Time: about 17 months ago (+3%).</td><td><strong>$8,602</strong></td></tr>
+            <tr><td><strong>L7. Circle T Dr</strong></td><td>$11,481</td><td>&minus;24%</td><td>Size: smaller tract (&minus;10%). Access: road frontage (&minus;10%). Adjacent use (&minus;5%). Time: about 6 months ago (+1%).</td><td><strong>$8,726</strong></td></tr>
+            <tr><td><strong>L8. Bethel Baptist Rd</strong></td><td>$5,241</td><td>+8%</td><td>Size: smaller tract (&minus;10%). Site quality: price far below nearby sales points to physical or access limits worse than the subject's usable land (+20%). Adjacent use (&minus;5%). Time: about 19 months ago (+3%).</td><td><strong>$5,660</strong></td></tr>
+            <tr><td><strong>L9. McLean Chapel Church Rd</strong></td><td>$9,019</td><td>&minus;11%</td><td>Size: similar aggregate (0%). Access: road frontage (&minus;10%). Adjacent use (&minus;5%). Time: about 21 months ago (+4%).</td><td><strong>$8,027</strong></td></tr>
+          </table>
+        </div>
+        <p class="note">Adjusted range is $5,660&ndash;$9,247 per acre, with a mean of $7,895. Conclusion: <strong>$8,000 per usable acre</strong>. The 9.2 constrained acres (pond and occasionally flooded soils) are valued at a nominal $1,500 per acre, since they add buffer and amenity but little development use.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Value analysis &amp; opinion of value</h2>
+        <div class="card">
+          <div class="table-wrap">
+            <table class="table parcel-table">
+              <tr><th>Component</th><th>Basis</th><th>Value</th></tr>
+              <tr><td>Operating park</td><td>20 billed units &times; $35,000</td><td>$700,000</td></tr>
+              <tr><td>Surplus land, usable</td><td>36.61 ac &times; $8,000</td><td>$292,880</td></tr>
+              <tr><td>Surplus land, constrained</td><td>9.2 ac &times; $1,500</td><td>$13,800</td></tr>
+              <tr><td><strong>Combined indication</strong></td><td>All three parcels, one sale</td><td><strong>$1,006,680</strong></td></tr>
+            </table>
+          </div>
+          <div class="stats">
+            <div class="stat"><div class="stat-label">Indicated value range</div><div class="stat-value">$910K&ndash;$1.10M</div></div>
+            <div class="stat stat-alert"><div class="stat-label">Opinion of value (rounded)</div><div class="stat-value">$1,000,000</div></div>
+            <div class="stat"><div class="stat-label">Recommended list price</div><div class="stat-value">$1,050,000</div></div>
+            <div class="stat"><div class="stat-label">2026 county value (reference)</div><div class="stat-value">$1,243,690</div></div>
+          </div>
+          <p class="note" style="margin-top:1.5rem">The low end of the range uses $32,000 per unit and $7,000 per usable acre ($910,070). The high end uses $38,000 per unit and $9,000 per usable acre ($1,103,290). The combined opinion of <strong>$1,000,000</strong> works out to about $50,000 per billed unit including all land, or about $17,000 per acre across 58.81 acres. Grant-Murray recommends listing at <strong>$1,050,000</strong>, about 5% above the opinion. That leaves room to negotiate and reflects the upside a buyer may see in the inactive sites and surplus land.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="container">
+        <h2>Counter-evidence &amp; upside</h2>
+        <div class="card">
+          <ul style="margin:0 0 0 1.2rem;padding:0">
+            <li style="margin-bottom:.5rem"><strong>The county's 2026 value is higher.</strong> The 2026 reappraisal puts the three parcels at $1,243,690, about 24% above this opinion and up from $800,830 in 2025. County mass-appraisal values are not market sales and are not relied on here, but a seller may anchor to that figure.</li>
+            <li style="margin-bottom:.5rem"><strong>Possible inactive pads.</strong> There are 26 addressed mobile-home sites against 20 billed units. If up to six pads can be re-leased without new permits, a buyer could add roughly $30,000 per year in lot rent at stabilization. Value is not credited here until that is verified.</li>
+            <li style="margin-bottom:.5rem"><strong>Higher-priced comps exist.</strong> Five of the ten park sales closed above $44,000 per unit before adjustment. If the subject's homes are park-owned, or rents are well above $425, the park component could support $40,000+ per unit, about $100,000 more.</li>
+            <li><strong>Land near Ray Rd has sold higher.</strong> The 10-acre Ray Rd sale (L1) at $14,000 per acre shows what frontage land in this corridor brings. If part of the Brandi Ln acreage could be split off with its own frontage, it could beat the $8,000 per acre used here.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <h2>Listing / commission terms</h2>
+        <div class="card">
+          <div class="terms-grid">
+            <div>
+              <h4>Sale listing</h4>
+              <p><strong>6% co-brokered</strong> &mdash; of the gross sale price when a cooperating broker procures the buyer, split under standard commercial co-brokerage practice.</p>
+              <p style="margin-top:.5rem"><strong>4% in-house</strong> &mdash; when Grant-Murray Real Estate, LLC procures the buyer directly.</p>
+            </div>
+            <div>
+              <h4>Offering approach</h4>
+              <p>Market all three parcels as one offering at <strong>$1,050,000</strong>, with the rent roll, trailing 12-month operating statement, septic and water records, and park permit documents supplied to qualified buyers under a confidentiality agreement.</p>
+            </div>
+          </div>
+          <p class="note">Listing broker: <strong>Patrick Murray, CCIM, SIOR</strong>, Grant-Murray Real Estate, LLC. Final listing terms, duration and marketing-cost provisions will be set out in a separate written listing agreement.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="alt">
+      <div class="container">
+        <h2>Limitations</h2>
+        <div class="card">
+          <ol style="margin:0 0 0 1.2rem;padding:0">
+            <li style="margin-bottom:.6rem"><strong>No rent roll, operating statement or occupancy report was provided.</strong> Unit count relies on county solid-waste billing (20) and address points (26). Lot rent, vacancy, expenses and cap rate are market assumptions.</li>
+            <li style="margin-bottom:.6rem"><strong>Home ownership is assumed.</strong> The value assumes the mobile homes are tenant-owned or separate personal property and are not included. Any park-owned homes would add value and should be inventoried.</li>
+            <li style="margin-bottom:.6rem"><strong>Utilities are not confirmed.</strong> County water is on Ray Rd, but pad-level water source and the number, age and condition of septic systems are unverified. Septic failures could reduce value materially.</li>
+            <li style="margin-bottom:.6rem"><strong>The 13-acre park footprint and 9.2 constrained acres are estimates</strong> based on county soils data and aerial imagery, not a survey or wetland delineation. The GIS area (64.67 ac) is larger than the legal acreage (58.81 ac) used here.</li>
+            <li style="margin-bottom:.6rem"><strong>Comp details come from county recorded-sale data.</strong> Prices, acreage and billed-unit counts were not confirmed with buyers or sellers. Sale terms, home inclusion and seller financing for each comp are unknown.</li>
+            <li style="margin-bottom:.6rem">No site inspection, title search or environmental review was performed for this opinion.</li>
+            <li>This is a broker's opinion of value for marketing purposes, prepared by Grant-Murray Real Estate, LLC. It is not a certified USPAP appraisal.</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container two-col">
+        <div class="card">
+          <h3>Prepared by</h3>
+          <p><strong>Patrick Murray, CCIM, SIOR</strong><br/>Principal / Broker in Charge<br/>Grant-Murray Real Estate, LLC</p>
+          <p style="margin-top:.75rem">150 N. McPherson Church Rd<br/>Fayetteville, NC 28303</p>
+          <p style="margin-top:.75rem">O: 910.829.1617<br/>patrick@grantmurrayre.com<br/><a href="https://www.grantmurrayre.com" target="_blank" rel="noopener">grantmurrayre.com</a></p>
+        </div>
+        <div class="card">
+          <h3>Prepared for</h3>
+          <p><strong>Mitzi D. Allison, Trustee</strong><br/>Mitzi D. Allison Revocable Trust<br/>7809 Blue Heron Dr W, Apt 2<br/>Wilmington, NC 28411</p>
+          <p class="disclaimer">This Broker Price Opinion (BPO) is prepared by Patrick Murray, CCIM, SIOR, of Grant-Murray Real Estate, LLC. It is not an appraisal and is not a certified valuation under USPAP. The conclusion uses the sales comparison approach on independently researched closed sales, cross-checked with a market-based income approach and with (but not relying on) the county's assessed value. It is subject to verification of the rent roll, utilities, unit count and site conditions, and to changing market conditions.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <img class="footer-logo" src="assets/gm-logo.svg" alt="Grant-Murray Real Estate" />
+      <div>
+        Broker Price Opinion &mdash; prepared 10/18/2026.<br/>
+        Prepared by Grant-Murray Real Estate | CCIM | SIOR<br/>
+        Live report: <a href="https://tpmurray13.github.io/bpo-country-acres-mhp/" style="color:#ffffff;text-decoration:underline" target="_blank" rel="noopener">tpmurray13.github.io/bpo-country-acres-mhp</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
